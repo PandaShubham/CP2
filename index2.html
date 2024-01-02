@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            width: 50%;
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        label {
+            grid-column: span 2;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            grid-column: span 2;
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        button {
+            grid-column: span 2;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: 2px solid #EC5800;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .package-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .package-card {
+            width: 30%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            padding: 15px;
+            border: 3px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .package-card:hover {
+            border-color: #45a049; 
+        }
+
+        .package-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .package-heading {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .package-attractions {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .package-price {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #EC5800;
+        }
+
+        .package-rating {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .package-book-button {
+            margin-top: 10px;
+            padding: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px solid #EC5800;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+
+        .services-section {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .service-card {
+            width: 25%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            background-color: #ABDCFF;
+        }
+
+        .service-heading {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .service-description {
+            font-size: 14px;
+            font-family:'Roboto', 'Helvetica Neue', sans-serif;
+            color: #555;
+        }
+    </style>
+    <title>Travel Website</title>
+</head>
+<body>
+
+    <div class="row">
+        <div class="section">
+            <img src="Sec11.jpg" alt="Package Image">
+            <h2>Package Image</h2>
+            <p>Find all package related details here.</p>
+        </div>
+        <div class="section">
+            <form id="bookingForm">
+                <label for="whereTo">Where to:</label>
+                <select id="whereTo" name="whereTo">
+                    <option value="place1">Bali</option>
+                    <option value="place2">Malaysia</option>
+                    <option value="place2">Bharat</option>
+                </select>
+
+                <label for="numberOfPersons">How Many Persons:</label>
+                <input type="number" id="numberOfPersons" name="numberOfPersons" min="1" required>
+
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" min="2023-12-15" required>
+
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" min="2023-12-15" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" minlength="50" maxlength="500" required></textarea>
+
+                <button type="button" onclick="bookNow()">Book Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="section">
+            <h2>Package Gallery</h2>
+            <div class="package-gallery">
+                <div class="package-card">
+                    <img class="package-image" src="Bali.jpeg" alt="Package 1 Image">
+                    <h3 class="package-heading">Bali</h3>
+                    <p class="package-attractions">Bali is the best place to visit because of its beaches</p>
+                    <p class="package-price">$500</p>
+                    <p class="package-rating">Rating: 4.5</p>
+                    <button class="package-book-button" onclick="bookPackage('Package 1')">Book Now</button>
+                </div>
+
+                <div class="package-card">
+                    <img class="package-image" src="malaysia.jpg" alt="Package 2 Image">
+                    <h3 class="package-heading">Malaysia</h3>
+                    <p class="package-attractions">Malaysia has a rich cultural history and beautiful landscapes</p>
+                    <p class="package-price">$650</p>
+                    <p class="package-rating">Rating: 4.8</p>
+                    <button class="package-book-button" onclick="bookPackage('Package 2')">Book Now</button>
+                </div>
+
+                <div class="package-card">
+                    <img class="package-image" src="india.jpeg" alt="Package 3 Image">
+                    <h3 class="package-heading">Bharat</h3>
+                    <p class="package-attractions">Bharat ka kehna hi kya sabse sundar hai</p>
+                    <p class="package-price">$900</p>
+                    <p class="package-rating">Rating: 4.2</p>
+                    <button class="package-book-button" onclick="bookPackage('Package 3')">Book Now</button>
+                </div>
+
+                <div class="package-card">
+                    <img class="package-image" src="india.jpeg" alt="Package 3 Image">
+                    <h3 class="package-heading">Bharat</h3>
+                    <p class="package-attractions">Bharat ka kehna hi kya sabse sundar hai</p>
+                    <p class="package-price">$900</p>
+                    <p class="package-rating">Rating: 4.2</p>
+                    <button class="package-book-button" onclick="bookPackage('Package 3')">Book Now</button>
+                </div>
+
+                <div class="package-card">
+                    <img class="package-image" src="india.jpeg" alt="Package 3 Image">
+                    <h3 class="package-heading">Bharat</h3>
+                    <p class="package-attractions">Bharat ka kehna hi kya sabse sundar hai</p>
+                    <p class="package-price">$900</p>
+                    <p class="package-rating">Rating: 4.2</p>
+                    <button class="package-book-button" onclick="bookPackage('Package 3')">Book Now</button>
+                </div>
+
+                <div class="package-card">
+                    <img class="package-image" src="malaysia.jpg" alt="Package 3 Image">
+                    <h3 class="package-heading">Bharat</h3>
+                    <p class="package-attractions">Bharat ka kehna hi kya sabse sundar hai</p>
+                    <p class="package-price">$900</p>
+                    <p class="package-rating">Rating: 4.2</p>
+                    <button class="package-book-button" onclick="bookPackage('Package 3')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="section">
+            <div class="services-section">
+                <h2>Services</h2>
+                <div class="service-card">
+                    <h3 class="service-heading">Food & Drinks</h3>
+                    <p class="service-description">Roti Canai: A type of flatbread served with curry sauce, often enjoyed for breakfast or as a snack. It can be plain or filled with various ingredients.A rich and flavorful coconut beef stew, often served during festive occasions. It involves slow-cooking meat with a mixture of spices and coconut milk until it becomes tender and aromatic.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3 class="service-heading">Affordable Hotel</h3>
+                    <p class="service-description">Enjoy affordable hotel accommodations with our travel packagesUbud is known for its cultural attractions and is generally more affordable compared to beachfront areas. You can find budget guesthouses and homestays here.While Seminyak is more upscale, it still offers a range of accommodation options. Look for budget hotels and guesthouses a bit away from the main beach area.Canggu has become a popular area for digital nomads and surfers. It offers a mix of budget and mid-range accommodation options.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3 class="service-heading">Safety Guides</h3>
+                    <p class="service-description"> Personal Safety.Be aware of your surroundings, especially in unfamiliar areas.Avoid displaying expensive items like jewelry and electronics.Use a money belt or hidden pouch to carry valuables.Be cautious when using ATMs and protect your PIN.Transportation Safety:Use reputable transportation services.Buckle up in vehicles, and choose registered and licensed transportation providers.Be cautious when using public transportation, and keep an eye on your belongings.</p>
+                </div>
+
+            
